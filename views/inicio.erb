@@ -1,0 +1,62 @@
+<h3>Comandos a ejecutar</h3>
+<form method="post" action="/inicio">
+    <textarea name="campo_entrada" rows="7" cols="20"></textarea>
+    <input type="submit" value="ejecutar">
+</form>
+
+<body>
+<%i=0%>
+<% while i<@posyiniciales.length() do%>
+    <h2>Auto <%=i+1%>:</h2>
+    <h3>Posicion Inicial:<%=@posyiniciales[i]%>,<%=@posxiniciales[i]%> <%=@orientacioniniciales[i]%> </h3>
+    <h3>Comandos: <%=@comandos_vista[i]%></h3>  
+    <h3>Posicion Final:<%=@posyfinales[i]%>,<%=@posxfinales[i]%> <%=@orientacionfinales[i]%> </h3>
+    <%i=i+1%>
+<%end%>
+</body>
+
+<body>
+<table align="center" border="0">
+<tr>
+<td width="300" align="center">TABLERO</td>
+</tr>
+</table>
+<table id="tablero" align="center" border="1">
+<%i=0%>
+<% while i<@alto_tablero do%>
+    <tr>
+    <%j=0%>
+    <% while j<@largo_tablero do%>
+        <td width="100" height="100" id="<%=i%><%=j%>" ></td>
+        <%j=j+1%>
+    <%end%>
+    </tr>
+    <%i=i+1%>
+<%end%>
+</table>
+<script>
+  <%i=0%>
+  <% while i<@posyiniciales.length() do%>
+    var aux = <%=i%>+1;
+    <% if @orientacionfinales[i]=="N"%>
+      var t = document.createTextNode(aux+"-N");
+    <%end%>
+    <% if @orientacionfinales[i]=="S"%>
+      var t = document.createTextNode(aux+"-S");
+    <%end%>
+    <% if @orientacionfinales[i]=="E"%>
+      var t = document.createTextNode(aux+"-E");
+    <%end%>
+    <% if @orientacionfinales[i]=="O"%>
+      var t = document.createTextNode(aux+"-O");
+    <%end%>
+    <%a=@posyfinales[i].to_s%>
+    <%b=@posxfinales[i].to_s%>
+    pos="<%=a%><%=b%>"
+    var x = document.createElement("TD");
+    x.appendChild(t).align="center";
+    document.getElementById(pos).appendChild(x).style="background-color: DodgerBlue;";
+    <%i=i+1%>
+  <%end%>
+</script>
+</body>
