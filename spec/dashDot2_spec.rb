@@ -86,7 +86,7 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         tablero.addPisoResbaladizo(pisoResvaladizo)
         expect(tablero.getPisosResbaladizos[0]).to eq pisoResvaladizo
     end
-    it "Deberia devolver la nueva orientacion del auto si creamos el piso con posiciones y desvio <1,2,D> y añadimos al tablero" do
+    it "Deberia devolver la nueva orientacion del auto('S',0,1,3) si creamos el piso con posiciones y desvio <1,2,D> y añadimos al tablero" do
         pisoResvaladizo=PisoResvaladizo.new(1,1,"D")
         tablero=Tablero.new(3,3)
         auto=Auto.new('S',0,1,3)
@@ -95,6 +95,26 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         tablero.addAuto(auto)
         auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
         expect(auto.getOrientacion).to eq "O"
+    end
+    it "Deberia devolver la nueva orientacion del auto('S',0,1,3) si creamos el piso con posiciones y desvio <1,2,I> y añadimos al tablero" do
+        pisoResvaladizo=PisoResvaladizo.new(1,1,"I")
+        tablero=Tablero.new(3,3)
+        auto=Auto.new('S',0,1,3)
+        auto.addComando("A")
+        tablero.addPisoResbaladizo(pisoResvaladizo)
+        tablero.addAuto(auto)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
+        expect(auto.getOrientacion).to eq "E"
+    end
+    it "Deberia devolver la misma orientacion del auto('E',0,1,3) si creamos el piso con posiciones y desvio <1,2,D> y añadimos al tablero" do
+        pisoResvaladizo=PisoResvaladizo.new(1,1,"D")
+        tablero=Tablero.new(3,3)
+        auto=Auto.new('E',0,1,3)
+        auto.addComando("A")
+        tablero.addPisoResbaladizo(pisoResvaladizo)
+        tablero.addAuto(auto)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
+        expect(auto.getOrientacion).to eq "E"
     end
   
 end
