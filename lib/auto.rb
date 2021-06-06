@@ -18,6 +18,9 @@ class Auto
     def getOrientacion()
         return @orientacion
     end
+    def setBalas(b)
+        @balas=b
+    end
     def getBalas()
         return @balas
     end
