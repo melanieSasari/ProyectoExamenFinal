@@ -1,6 +1,7 @@
 require './lib/auto.rb'
 require './lib/tablero.rb'
 require './lib/obstaculo.rb'
+require './lib/pisoResbaladizo.rb'
 
 RSpec.describe "Pruebas para las nuevas fucionalidades" do
     it "Deberia devolver la cantidad de balas del auto si el auto tiene 3 balas" do
@@ -57,5 +58,9 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         tablero.addObstaculo(obstaculo)
         auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos)
         expect(auto.getPosicion_y).to eq 2
+    end
+    it "Deberia devolver las posicion en y del piso resvaladiso si creamos el piso con posiciones y,x" do
+        pisoResvaladizo=PisoResvaladizo.new(1,2)
+        expect(pisoResvaladizo.getPosicionPiso_y).to eq 1
     end
 end
