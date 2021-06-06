@@ -47,6 +47,9 @@ class Tablero
         @pisosResbaladizos.push(pisoResbaladizo)
         return true
     end
+    def getPisosResbaladizos()
+        return @pisosResbaladizos
+    end
     def getAutos()
         return @autos
     end

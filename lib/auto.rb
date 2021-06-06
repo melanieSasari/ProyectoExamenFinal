@@ -79,6 +79,7 @@ class Auto
                 if(@posicion_y+1<limite_alto && libre)
                     @posicion_y=@posicion_y+1
                 end
+
             when 'N'
                 libre=true
                 listaAutos.each do |a|
