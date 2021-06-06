@@ -32,7 +32,8 @@ post '/inicio' do
         @pos_y_auto=@entrada.to_s.split(/\r\n/)[i].to_s.split(/,/)[0].to_i
         @pos_x_auto=@entrada.to_s.split(/\r\n/)[i].to_s.split(/,/)[1].to_i
         @orientacion_auto=@entrada.to_s.split(/\r\n/)[i].to_s.split("\s")[1]
-        auto=Auto.new(@orientacion_auto,@pos_y_auto,@pos_x_auto)
+        @balas_auto=@entrada.to_s.split(/\r\n/)[i].to_s.split("\s")[2].to_i
+        auto=Auto.new(@orientacion_auto,@pos_y_auto,@pos_x_auto,@balas_auto)
         auto.addComando(@entrada.to_s.split(/\r\n/)[i+1].to_s)
         tablero.addAuto(auto)
         
