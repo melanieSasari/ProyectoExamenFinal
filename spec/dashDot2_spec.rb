@@ -71,4 +71,8 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         pisoResvaladizo=PisoResvaladizo.new(1,2,"I")
         expect(pisoResvaladizo.getDesvio).to eq "I"
     end
+    it "Deberia devolver el desvio <D> del piso resvaladizo si creamos el piso con posiciones y desvio <1,2,D>" do
+        pisoResvaladizo=PisoResvaladizo.new(1,2,"D")
+        expect(pisoResvaladizo.getDesvio).to eq "D"
+    end
 end
