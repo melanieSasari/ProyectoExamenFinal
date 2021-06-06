@@ -22,11 +22,17 @@ post '/inicio' do
     obstaculo=Obstaculo.new(@pos_y_obstaculo,@pos_x_obstaculo)
     tablero.addObstaculo(obstaculo)
 
+    @pos_y_pisoResbaladizo=@entrada.to_s.split(/\r\n/)[2].to_s.split(/,/)[0].to_i
+    @pos_x_pisoResbaladizo=@entrada.to_s.split(/\r\n/)[2].to_s.split(/,/)[1].to_i
+    @desvio_pisoResbaladizo=@entrada.to_s.split(/\r\n/)[2].to_s.split("\s")[1]
+    pisoResvaladizo=PisoResvaladizo.new(@pos_y_pisoResbaladizo,@pos_x_pisoResbaladizo,@desvio_pisoResbaladizo)
+    tablero.addPisoResbaladizo(pisoResvaladizo)
+
     @largo_tablero1=tablero.getLargo
     @alto_tablero1=tablero.getAlto
     
 
-    i=2
+    i=3
     while @entrada.to_s.split(/\r\n/)[i] != nil  do
 
         @pos_y_auto=@entrada.to_s.split(/\r\n/)[i].to_s.split(/,/)[0].to_i
@@ -86,7 +92,7 @@ post '/inicio' do
 
         @comando.each do |c|
             if(c=="A")
-                a.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos)
+                a.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
             end
             if(c=="I")
                 a.girarIzquierda
