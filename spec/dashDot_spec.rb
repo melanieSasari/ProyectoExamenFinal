@@ -32,28 +32,28 @@ RSpec.describe "dash dot" do
         tablero=Tablero.new(3,5)
         auto=Auto.new('N',1,2,0)
         tablero.addAuto(auto)
-        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
         expect(auto.getPosicion_y).to eq 0
     end
     it "deberia devolver posicion x-1 <1> si le pasamos el comando avanzar "do
         tablero=Tablero.new(3,5)
         auto=Auto.new('O',2,2,0)
         tablero.addAuto(auto)
-        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
         expect(auto.getPosicion_x).to eq 1
     end
     it "deberia devolver posicion x+1 <2> si le pasamos el comando avanzar "do
         tablero=Tablero.new(3,5)
         auto=Auto.new('E',1,2,0)
         tablero.addAuto(auto)
-        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
         expect(auto.getPosicion_x).to eq 2
     end
     it "deberia devolver posicion y-1 <1> si le pasamos el comando avanzar "do
         tablero=Tablero.new(3,5)
         auto=Auto.new('S',1,2,0)
         tablero.addAuto(auto)
-        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
         expect(auto.getPosicion_y).to eq 2
     end
 
@@ -61,14 +61,14 @@ RSpec.describe "dash dot" do
         tablero=Tablero.new(3,5)
         auto=Auto.new('O',1,2,0)
         tablero.addAuto(auto)
-        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
         expect(auto.getPosicion_x).to eq 1
     end  
     it "deberia devolver posicion x sin moverse <3> si le pasamos el comando avanzar "do
         tablero=Tablero.new(3,5)
         auto=Auto.new('E',2,3,0)
         tablero.addAuto(auto)
-        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
         expect(auto.getPosicion_x).to eq 3
     end
 

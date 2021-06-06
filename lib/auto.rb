@@ -54,7 +54,7 @@ class Auto
                 @orientacion='S'
         end
     end
-    def avanzar(limite_largo,limite_alto,listaAutos,listaObstaculos)
+    def avanzar(limite_largo,limite_alto,listaAutos,listaObstaculos,listaPisosResbaladizos)
 
         case @orientacion
             when 'S'
@@ -79,7 +79,6 @@ class Auto
                 if(@posicion_y+1<limite_alto && libre)
                     @posicion_y=@posicion_y+1
                 end
-
             when 'N'
                 libre=true
                 listaAutos.each do |a|
@@ -147,6 +146,15 @@ class Auto
                 if(@posicion_x+1<limite_largo && libre)
                     @posicion_x=@posicion_x+1
                 end
+        end
+        listaPisosResbaladizos.each do |p|
+            if(@posicion_x ==p.getPosicionPiso_x && @posicion_y == p.getPosicionPiso_y) 
+                if(p.getDesvio=="I")
+                    girarIzquierda
+                else
+                    girarDerecha
+                end
+            end
         end
     end
 

@@ -36,7 +36,7 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         obstaculo=Obstaculo.new(1,1)
         tablero.addAuto(auto)
         tablero.addObstaculo(obstaculo)
-        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
         expect(auto.getBalas).to eq 2
     end
     it "Deberia devolver la posicion final en Y <1> si el auto tiene 3 balas y si se topa con un obstaculo en 1,1" do
@@ -46,7 +46,7 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         obstaculo=Obstaculo.new(1,1)
         tablero.addAuto(auto)
         tablero.addObstaculo(obstaculo)
-        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
         expect(auto.getPosicion_y).to eq 1
     end
     it "Deberia devolver la posicion final en Y <2> si el auto tiene 0 balas y si se topa con un obstaculo en 1,1" do
@@ -56,7 +56,7 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         obstaculo=Obstaculo.new(1,1)
         tablero.addAuto(auto)
         tablero.addObstaculo(obstaculo)
-        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
         expect(auto.getPosicion_y).to eq 2
     end
     it "Deberia devolver la posicion en y <1> del piso resvaladizo si creamos el piso con posiciones y,x <1,2>" do
@@ -86,4 +86,15 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         tablero.addPisoResbaladizo(pisoResvaladizo)
         expect(tablero.getPisosResbaladizos[0]).to eq pisoResvaladizo
     end
+    it "Deberia devolver la nueva orientacion del auto si creamos el piso con posiciones y desvio <1,2,D> y añadimos al tablero" do
+        pisoResvaladizo=PisoResvaladizo.new(1,1,"D")
+        tablero=Tablero.new(3,3)
+        auto=Auto.new('S',0,1,3)
+        auto.addComando("A")
+        tablero.addPisoResbaladizo(pisoResvaladizo)
+        tablero.addAuto(auto)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
+        expect(auto.getOrientacion).to eq "O"
+    end
+  
 end
