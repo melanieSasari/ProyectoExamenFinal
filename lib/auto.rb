@@ -1,11 +1,12 @@
 require './lib/obstaculo.rb'
 class Auto   
     # método inicializar clase
-    def initialize(orientacion, posicion_y,posicion_x)  
+    def initialize(orientacion, posicion_y,posicion_x,balas)  
         # atributos           
         @orientacion = orientacion 
         @posicion_x=posicion_x
         @posicion_y=posicion_y
+        @balas=balas
         @comandos=nil
     end
     def addComando(comando)
@@ -17,7 +18,9 @@ class Auto
     def getOrientacion()
         return @orientacion
     end
-
+    def getBalas()
+        return @balas
+    end
     def getPosicion_x()
         return @posicion_x
     end
