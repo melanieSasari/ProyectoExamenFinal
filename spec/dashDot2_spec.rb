@@ -38,7 +38,7 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos)
         expect(auto.getBalas).to eq 2
     end
-        it "Deberia devolver la posicion final en Y <1> si el auto tiene 3 balas y si se topa con un obstaculo en 1,1" do
+    it "Deberia devolver la posicion final en Y <1> si el auto tiene 3 balas y si se topa con un obstaculo en 1,1" do
         auto=Auto.new('N',2,1,3)
         auto.addComando("A")
         tablero=Tablero.new(3,3)
@@ -47,5 +47,15 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         tablero.addObstaculo(obstaculo)
         auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos)
         expect(auto.getPosicion_y).to eq 1
+    end
+    it "Deberia devolver la posicion final en Y <2> si el auto tiene 0 balas y si se topa con un obstaculo en 1,1" do
+        auto=Auto.new('N',2,1,0)
+        auto.addComando("A")
+        tablero=Tablero.new(3,3)
+        obstaculo=Obstaculo.new(1,1)
+        tablero.addAuto(auto)
+        tablero.addObstaculo(obstaculo)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos)
+        expect(auto.getPosicion_y).to eq 2
     end
 end
