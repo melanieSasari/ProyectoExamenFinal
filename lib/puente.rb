@@ -12,4 +12,7 @@ class Puente
     def getPosInicio_x()
         return @posInicio_x
     end
+    def getPosFin_y()
+        return @posFin_y
+    end
 end

@@ -125,5 +125,8 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         puente=Puente.new(0,2,2,2)
         expect(puente.getPosInicio_x).to eq 2
     end
-  
+    it "Deberia devolver la posicion en y <2> del fin del puente si creamos el puente con posiciones yInicio,xInicio yFinal,xFinal<0,2 2,2>" do
+        puente=Puente.new(0,2,2,2)
+        expect(puente.getPosFin_y).to eq 2
+    end
 end
