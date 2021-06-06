@@ -28,4 +28,14 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         tablero.addObstaculo(obstaculo)
         expect(auto.getBalas).to eq 3
     end
+    it "Deberia devolver la cantidad de balas del auto <2> si el auto tiene 3 balas y si se topa con un obstaculo" do
+        auto=Auto.new('N',2,1,3)
+        auto.addComando("A")
+        tablero=Tablero.new(3,3)
+        obstaculo=Obstaculo.new(1,1)
+        tablero.addAuto(auto)
+        tablero.addObstaculo(obstaculo)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos)
+        expect(auto.getBalas).to eq 2
+    end
 end

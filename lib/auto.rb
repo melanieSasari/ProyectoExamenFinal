@@ -66,9 +66,13 @@ class Auto
                     end
                 end
                 listaObstaculos.each do |o|
-                 if(@posicion_x ==o.getPosicionObs_x && @posicion_y+1 == o.getPosicionObs_y) 
-                       libre=false
-                       break
+                 if(@posicion_x ==o.getPosicionObs_x && @posicion_y+1 == o.getPosicionObs_y)
+                        if(@balas==0)
+                            libre=false
+                        else
+                            @balas=@balas-1
+                        end
+                        break
                   end
                 end
                 if(@posicion_y+1<limite_alto && libre)
@@ -84,7 +88,11 @@ class Auto
                 end
                 listaObstaculos.each do |o|
                   if(@posicion_x ==o.getPosicionObs_x &&  @posicion_y-1 == o.getPosicionObs_y) 
-                        libre=false
+                        if(@balas==0)
+                            libre=false
+                        else
+                            @balas=@balas-1
+                        end
                         break
                     end
                 end
@@ -102,7 +110,11 @@ class Auto
                 end
                 listaObstaculos.each do |o|
                     if(@posicion_x-1 ==o.getPosicionObs_x && @posicion_y == o.getPosicionObs_y) 
-                        libre=false
+                        if(@balas==0)
+                            libre=false
+                        else
+                            @balas=@balas-1
+                        end
                         break
                     end
                 end
@@ -119,7 +131,11 @@ class Auto
                 end
                 listaObstaculos.each do |o|
                     if(@posicion_x+1 ==o.getPosicionObs_x && @posicion_y == o.getPosicionObs_y) 
-                        libre=false
+                        if(@balas==0)
+                            libre=false
+                        else
+                            @balas=@balas-1
+                        end
                         break
                     end
                 end
