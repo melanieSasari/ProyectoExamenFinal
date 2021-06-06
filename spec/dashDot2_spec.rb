@@ -59,12 +59,16 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos)
         expect(auto.getPosicion_y).to eq 2
     end
-    it "Deberia devolver las posicion en y <1> del piso resvaladizo si creamos el piso con posiciones y,x <1,2>" do
-        pisoResvaladizo=PisoResvaladizo.new(1,2)
+    it "Deberia devolver la posicion en y <1> del piso resvaladizo si creamos el piso con posiciones y,x <1,2>" do
+        pisoResvaladizo=PisoResvaladizo.new(1,2,"I")
         expect(pisoResvaladizo.getPosicionPiso_y).to eq 1
     end
-    it "Deberia devolver las posicion en x <2> del piso resvaladizo si creamos el piso con posiciones y,x <1,2>" do
-        pisoResvaladizo=PisoResvaladizo.new(1,2)
+    it "Deberia devolver la posicion en x <2> del piso resvaladizo si creamos el piso con posiciones y,x <1,2>" do
+        pisoResvaladizo=PisoResvaladizo.new(1,2,"I")
         expect(pisoResvaladizo.getPosicionPiso_x).to eq 2
+    end
+    it "Deberia devolver el desvio <I> del piso resvaladizo si creamos el piso con posiciones y desvio <1,2,I>" do
+        pisoResvaladizo=PisoResvaladizo.new(1,2,"I")
+        expect(pisoResvaladizo.getDesvio).to eq "I"
     end
 end
