@@ -71,6 +71,7 @@ class Auto
                             libre=false
                         else
                             @balas=@balas-1
+                            listaObstaculos.delete(o)
                         end
                         break
                   end
@@ -92,6 +93,7 @@ class Auto
                             libre=false
                         else
                             @balas=@balas-1
+                            listaObstaculos.delete(o)
                         end
                         break
                     end
@@ -114,6 +116,7 @@ class Auto
                             libre=false
                         else
                             @balas=@balas-1
+                            listaObstaculos.delete(o)
                         end
                         break
                     end
@@ -135,6 +138,7 @@ class Auto
                             libre=false
                         else
                             @balas=@balas-1
+                            listaObstaculos.delete(o)
                         end
                         break
                     end

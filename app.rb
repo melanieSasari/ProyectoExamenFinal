@@ -74,6 +74,7 @@ post '/inicio' do
         @comandos_vista=@comandos_vista+[a.getComando]
     end
 
+
     
    # @comandos=@entrada.to_s.split(/\r\n/)[2].to_s.split(//)
     
@@ -122,6 +123,9 @@ post '/inicio' do
     tablero.getAutos.each do |a|
         @orientacionfinales=@orientacionfinales+[a.getOrientacion]
     end
-    
+    @balas_vista=[]
+    tablero.getAutos.each do |a|
+        @balas_vista=@balas_vista+[a.getBalas]
+    end
     erb :inicio  
 end
