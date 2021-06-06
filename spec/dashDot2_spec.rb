@@ -1,4 +1,7 @@
 require './lib/auto.rb'
+require './lib/tablero.rb'
+require './lib/obstaculo.rb'
+
 RSpec.describe "Pruebas para las nuevas fucionalidades" do
     it "Deberia devolver la cantidad de balas del auto si el auto tiene 3 balas" do
         expect(Auto.new('N',2,1,3).getBalas).to eq 3 
@@ -15,5 +18,14 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         auto=Auto.new('N',2,1,3)
         auto.setBalas(3-1)
         expect(auto.getBalas).to eq 2 
+    end
+    it "Deberia devolver la cantidad de balas del auto <3> si el auto tiene 3 balas y no se topa con un obstaculo" do
+        auto=Auto.new('E',2,1,3)
+        auto.addComando("A")
+        tablero=Tablero.new(3,3)
+        obstaculo=Obstaculo.new(1,1)
+        tablero.addAuto(auto)
+        tablero.addObstaculo(obstaculo)
+        expect(auto.getBalas).to eq 3
     end
 end
