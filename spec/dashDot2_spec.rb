@@ -2,6 +2,7 @@ require './lib/auto.rb'
 require './lib/tablero.rb'
 require './lib/obstaculo.rb'
 require './lib/pisoResbaladizo.rb'
+require './lib/puente.rb'
 
 RSpec.describe "Pruebas para las nuevas fucionalidades" do
     it "Deberia devolver la cantidad de balas del auto si el auto tiene 3 balas" do
@@ -115,6 +116,10 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         tablero.addAuto(auto)
         auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
         expect(auto.getOrientacion).to eq "E"
+    end
+    it "Deberia devolver la posicion en y <0> del inicio del puente si creamos el puente con posiciones yInicio,xInicio yFinal,xFinal<0,2 2,2>" do
+        puente=Puente.new(0,2,2,2)
+        expect(puente.getPosInicio_y).to eq 0
     end
   
 end
