@@ -75,4 +75,9 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         pisoResvaladizo=PisoResvaladizo.new(1,2,"D")
         expect(pisoResvaladizo.getDesvio).to eq "D"
     end
+    it "Deberia devolver true si creamos el piso con posiciones y desvio <1,2,D> y añadimos al tablero" do
+        pisoResvaladizo=PisoResvaladizo.new(1,2,"D")
+        tablero=Tablero.new(3,3)
+        expect(tablero.addPisoResbaladizo(pisoResvaladizo)).to eq true
+    end
 end

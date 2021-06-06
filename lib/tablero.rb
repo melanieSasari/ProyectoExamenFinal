@@ -1,5 +1,7 @@
 require './lib/auto.rb'
 require './lib/obstaculo.rb'
+require './lib/pisoResbaladizo.rb'
+
 class Tablero   
     # método inicializar clase
     def initialize(largo, alto)  
@@ -8,6 +10,7 @@ class Tablero
         @largo=largo
         @autos=Array.new
         @obstaculos=Array.new
+        @pisosResbaladizos=Array.new
     end
     def getAlto()
         return @alto
@@ -38,6 +41,10 @@ class Tablero
     end
     def addObstaculo(obstaculo)
         @obstaculos.push(obstaculo)
+        return true
+    end
+    def addPisoResbaladizo(pisoResbaladizo)
+        @pisosResbaladizos.push(pisoResbaladizo)
         return true
     end
     def getAutos()
