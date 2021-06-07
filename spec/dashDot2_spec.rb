@@ -37,7 +37,7 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         obstaculo=Obstaculo.new(1,1)
         tablero.addAuto(auto)
         tablero.addObstaculo(obstaculo)
-        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos,tablero.getPuentes)
         expect(auto.getBalas).to eq 2
     end
     it "Deberia devolver la posicion final en Y <1> si el auto tiene 3 balas y si se topa con un obstaculo en 1,1" do
@@ -47,7 +47,7 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         obstaculo=Obstaculo.new(1,1)
         tablero.addAuto(auto)
         tablero.addObstaculo(obstaculo)
-        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos,tablero.getPuentes)
         expect(auto.getPosicion_y).to eq 1
     end
     it "Deberia devolver la posicion final en Y <2> si el auto tiene 0 balas y si se topa con un obstaculo en 1,1" do
@@ -57,7 +57,7 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         obstaculo=Obstaculo.new(1,1)
         tablero.addAuto(auto)
         tablero.addObstaculo(obstaculo)
-        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos,tablero.getPuentes)
         expect(auto.getPosicion_y).to eq 2
     end
     it "Deberia devolver la posicion en y <1> del piso resvaladizo si creamos el piso con posiciones y,x <1,2>" do
@@ -94,7 +94,7 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         auto.addComando("A")
         tablero.addPisoResbaladizo(pisoResvaladizo)
         tablero.addAuto(auto)
-        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos,tablero.getPuentes)
         expect(auto.getOrientacion).to eq "O"
     end
     it "Deberia devolver la nueva orientacion del auto('S',0,1,3) si creamos el piso con posiciones y desvio <1,2,I> y añadimos al tablero" do
@@ -104,7 +104,7 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         auto.addComando("A")
         tablero.addPisoResbaladizo(pisoResvaladizo)
         tablero.addAuto(auto)
-        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos,tablero.getPuentes)
         expect(auto.getOrientacion).to eq "E"
     end
     it "Deberia devolver la misma orientacion del auto('E',0,1,3) si creamos el piso con posiciones y desvio <1,2,D> y añadimos al tablero" do
@@ -114,7 +114,7 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         auto.addComando("A")
         tablero.addPisoResbaladizo(pisoResvaladizo)
         tablero.addAuto(auto)
-        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos,tablero.getPuentes)
         expect(auto.getOrientacion).to eq "E"
     end
     it "Deberia devolver la posicion en y <0> del inicio del puente si creamos el puente con posiciones yInicio,xInicio yFinal,xFinal<0,2 2,2>" do
@@ -138,10 +138,20 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         tablero=Tablero.new(3,3)
         expect(tablero.addPuente(puente)).to eq true
     end
-    it "Deberia devolver el piso resvaladizo si creamos el piso con posiciones y desvio <1,2,D> y añadimos al tablero" do
+    it "Deberia devolver el puente si creamos el puente con posiciones de inicio y fin <0,2 2,2> y añadimos al tablero" do
         puente=Puente.new(0,2,2,2)
         tablero=Tablero.new(3,3)
         tablero.addPuente(puente)
         expect(tablero.getPuentes[0]).to eq puente
+    end
+    it "Deberia devolver la nueva posicion en y del auto('E',0,1,3) si creamos el puente con posiciones de inicio y fin <0,2 2,2> y añadimos al tablero" do
+        puente=Puente.new(0,2,2,2)
+        tablero=Tablero.new(3,3)
+        auto=Auto.new('E',0,1,3)
+        tablero.addPuente(puente)
+        tablero.addAuto(auto)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos,tablero.getPuentes)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos,tablero.getPuentes)
+        expect(auto.getPosicion_y).to eq 2
     end
 end

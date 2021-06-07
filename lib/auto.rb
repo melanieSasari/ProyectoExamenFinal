@@ -54,98 +54,109 @@ class Auto
                 @orientacion='S'
         end
     end
-    def avanzar(limite_largo,limite_alto,listaAutos,listaObstaculos,listaPisosResbaladizos)
+    def VerificarPuente(listaPuentes)
+        listaPuentes.each do |a|
+            if(@posicion_x ==a.getPosInicio_x && @posicion_y == a.getPosInicio_y) 
+                @posicion_x=a.getPosFin_x
+                @posicion_y=a.getPosFin_y
+                return true
+            end
+        end
+        return false
+    end
+    def avanzar(limite_largo,limite_alto,listaAutos,listaObstaculos,listaPisosResbaladizos,listaPuentes)
+        if(VerificarPuente(listaPuentes)==false)
+            case @orientacion
+                when 'S'
+                    libre=true
+                    listaAutos.each do |a|
+                        if(@posicion_x ==a.getPosicion_x && @posicion_y+1 == a.getPosicion_y) 
+                            libre=false
+                            break
+                        end
+                    end
+                    listaObstaculos.each do |o|
+                    if(@posicion_x ==o.getPosicionObs_x && @posicion_y+1 == o.getPosicionObs_y)
+                            if(@balas==0)
+                                libre=false
+                            else
+                                @balas=@balas-1
+                                listaObstaculos.delete(o)
+                            end
+                            break
+                    end
+                    end
+                    if(@posicion_y+1<limite_alto && libre)
+                        @posicion_y=@posicion_y+1
+                    end
+                when 'N'
+                    libre=true
+                    listaAutos.each do |a|
+                        if(@posicion_x ==a.getPosicion_x &&  @posicion_y-1 == a.getPosicion_y) 
+                            libre=false
+                            break
+                        end
+                    end
+                    listaObstaculos.each do |o|
+                    if(@posicion_x ==o.getPosicionObs_x &&  @posicion_y-1 == o.getPosicionObs_y) 
+                            if(@balas==0)
+                                libre=false
+                            else
+                                @balas=@balas-1
+                                listaObstaculos.delete(o)
+                            end
+                            break
+                        end
+                    end
+                    if(@posicion_y-1>=0 && libre)
+                        @posicion_y=@posicion_y-1
+                    end
 
-        case @orientacion
-            when 'S'
-                libre=true
-                listaAutos.each do |a|
-                    if(@posicion_x ==a.getPosicion_x && @posicion_y+1 == a.getPosicion_y) 
-                        libre=false
-                        break
-                    end
-                end
-                listaObstaculos.each do |o|
-                 if(@posicion_x ==o.getPosicionObs_x && @posicion_y+1 == o.getPosicionObs_y)
-                        if(@balas==0)
+                when 'O'
+                    libre=true
+                    listaAutos.each do |a|
+                        if(@posicion_x-1 ==a.getPosicion_x && @posicion_y == a.getPosicion_y) 
                             libre=false
-                        else
-                            @balas=@balas-1
-                            listaObstaculos.delete(o)
+                            break
                         end
-                        break
-                  end
-                end
-                if(@posicion_y+1<limite_alto && libre)
-                    @posicion_y=@posicion_y+1
-                end
-            when 'N'
-                libre=true
-                listaAutos.each do |a|
-                    if(@posicion_x ==a.getPosicion_x &&  @posicion_y-1 == a.getPosicion_y) 
-                        libre=false
-                        break
                     end
-                end
-                listaObstaculos.each do |o|
-                  if(@posicion_x ==o.getPosicionObs_x &&  @posicion_y-1 == o.getPosicionObs_y) 
-                        if(@balas==0)
+                    listaObstaculos.each do |o|
+                        if(@posicion_x-1 ==o.getPosicionObs_x && @posicion_y == o.getPosicionObs_y) 
+                            if(@balas==0)
+                                libre=false
+                            else
+                                @balas=@balas-1
+                                listaObstaculos.delete(o)
+                            end
+                            break
+                        end
+                    end
+                    if(@posicion_x-1>=0 && libre)
+                        @posicion_x=@posicion_x-1
+                    end
+                when 'E'
+                    libre=true
+                    listaAutos.each do |a|
+                        if(@posicion_x+1 ==a.getPosicion_x && @posicion_y == a.getPosicion_y) 
                             libre=false
-                        else
-                            @balas=@balas-1
-                            listaObstaculos.delete(o)
+                            break
                         end
-                        break
                     end
-                end
-                if(@posicion_y-1>=0 && libre)
-                    @posicion_y=@posicion_y-1
-                end
-
-            when 'O'
-                libre=true
-                listaAutos.each do |a|
-                    if(@posicion_x-1 ==a.getPosicion_x && @posicion_y == a.getPosicion_y) 
-                        libre=false
-                        break
-                    end
-                end
-                listaObstaculos.each do |o|
-                    if(@posicion_x-1 ==o.getPosicionObs_x && @posicion_y == o.getPosicionObs_y) 
-                        if(@balas==0)
-                            libre=false
-                        else
-                            @balas=@balas-1
-                            listaObstaculos.delete(o)
+                    listaObstaculos.each do |o|
+                        if(@posicion_x+1 ==o.getPosicionObs_x && @posicion_y == o.getPosicionObs_y) 
+                            if(@balas==0)
+                                libre=false
+                            else
+                                @balas=@balas-1
+                                listaObstaculos.delete(o)
+                            end
+                            break
                         end
-                        break
                     end
-                end
-                if(@posicion_x-1>=0 && libre)
-                    @posicion_x=@posicion_x-1
-                end
-            when 'E'
-                libre=true
-                listaAutos.each do |a|
-                    if(@posicion_x+1 ==a.getPosicion_x && @posicion_y == a.getPosicion_y) 
-                        libre=false
-                        break
+                    if(@posicion_x+1<limite_largo && libre)
+                        @posicion_x=@posicion_x+1
                     end
-                end
-                listaObstaculos.each do |o|
-                    if(@posicion_x+1 ==o.getPosicionObs_x && @posicion_y == o.getPosicionObs_y) 
-                        if(@balas==0)
-                            libre=false
-                        else
-                            @balas=@balas-1
-                            listaObstaculos.delete(o)
-                        end
-                        break
-                    end
-                end
-                if(@posicion_x+1<limite_largo && libre)
-                    @posicion_x=@posicion_x+1
-                end
+            end
         end
         listaPisosResbaladizos.each do |p|
             if(@posicion_x ==p.getPosicionPiso_x && @posicion_y == p.getPosicionPiso_y) 
