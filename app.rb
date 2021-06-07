@@ -3,6 +3,7 @@ require './config'
 require './lib/auto.rb'
 require './lib/tablero.rb'
 require './lib/obstaculo.rb'
+require './lib/puente.rb'
 
 get '/' do
     erb :bienvenida
@@ -28,11 +29,19 @@ post '/inicio' do
     pisoResvaladizo=PisoResvaladizo.new(@pos_y_pisoResbaladizo,@pos_x_pisoResbaladizo,@desvio_pisoResbaladizo)
     tablero.addPisoResbaladizo(pisoResvaladizo)
 
+    @pos_y_puenteInicio=@entrada.to_s.split(/\r\n/)[3].to_s.split(/,/)[0].to_i
+    @pos_x_puenteInicio=@entrada.to_s.split(/\r\n/)[3].to_s.split(/,/)[1].to_i
+    @pos_y_puenteFin=@entrada.to_s.split(/\r\n/)[3].to_s.split("\s")[1].to_s.split(/,/)[0].to_i
+    @pos_x_puenteFin=@entrada.to_s.split(/\r\n/)[3].to_s.split("\s")[1].to_s.split(/,/)[1].to_i
+    puente=Puente.new(@pos_y_puenteInicio,@pos_x_puenteInicio,@pos_y_puenteFin,@pos_x_puenteFin)
+    tablero.addPuente(puente)
+
+
     @largo_tablero1=tablero.getLargo
     @alto_tablero1=tablero.getAlto
     
 
-    i=3
+    i=4
     while @entrada.to_s.split(/\r\n/)[i] != nil  do
 
         @pos_y_auto=@entrada.to_s.split(/\r\n/)[i].to_s.split(/,/)[0].to_i
@@ -92,7 +101,7 @@ post '/inicio' do
 
         @comando.each do |c|
             if(c=="A")
-                a.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos)
+                a.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos,tablero.getPuentes)
             end
             if(c=="I")
                 a.girarIzquierda
