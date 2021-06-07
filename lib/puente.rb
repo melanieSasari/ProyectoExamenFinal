@@ -15,4 +15,7 @@ class Puente
     def getPosFin_y()
         return @posFin_y
     end
+    def getPosFin_x()
+        return @posFin_x
+    end
 end
