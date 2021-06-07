@@ -133,4 +133,9 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         puente=Puente.new(0,2,2,2)
         expect(puente.getPosFin_x).to eq 2
     end
+    it "Deberia devolver true si creamos el puente con posiciones de inicio y fin <0,2 2,2> y añadimos al tablero" do
+        puente=Puente.new(0,2,2,2)
+        tablero=Tablero.new(3,3)
+        expect(tablero.addPuente(puente)).to eq true
+    end
 end
