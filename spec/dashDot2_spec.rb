@@ -154,4 +154,14 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos,tablero.getPuentes)
         expect(auto.getPosicion_y).to eq 2
     end
+    it "Deberia devolver la nueva posicion en y del auto('E',0,1,3) si creamos el puente con posiciones de inicio y fin <0,2 2,2> y añadimos al tablero" do
+        puente=Puente.new(0,1,2,1)
+        tablero=Tablero.new(3,3)
+        auto=Auto.new('E',0,0,3)
+        tablero.addPuente(puente)
+        tablero.addAuto(auto)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos,tablero.getPuentes)
+        auto.avanzar(tablero.getLargo,tablero.getAlto,tablero.getAutos,tablero.getObstaculos,tablero.getPisosResbaladizos,tablero.getPuentes)
+        expect(auto.getPosicion_x).to eq 1
+    end
 end
