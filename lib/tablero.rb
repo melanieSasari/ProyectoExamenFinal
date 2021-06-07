@@ -56,6 +56,9 @@ class Tablero
         @puentes.push(puente)
         return true
     end
+    def getPuentes()
+        return @puentes
+    end
     def getAutos()
         return @autos
     end

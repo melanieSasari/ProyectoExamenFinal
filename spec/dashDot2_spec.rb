@@ -138,4 +138,10 @@ RSpec.describe "Pruebas para las nuevas fucionalidades" do
         tablero=Tablero.new(3,3)
         expect(tablero.addPuente(puente)).to eq true
     end
+    it "Deberia devolver el piso resvaladizo si creamos el piso con posiciones y desvio <1,2,D> y añadimos al tablero" do
+        puente=Puente.new(0,2,2,2)
+        tablero=Tablero.new(3,3)
+        tablero.addPuente(puente)
+        expect(tablero.getPuentes[0]).to eq puente
+    end
 end
